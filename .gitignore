@@ -1,0 +1,12 @@
+/build
+/dist
+/deb_dist
+/docs/build
+/src/build/
+/src/clustering/build/
+/media/*
+*.pyc
+*.pyo
+*~
+*.so
+.fuse_hidden*
