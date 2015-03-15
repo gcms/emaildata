@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: emaildata
+Version: 0.0dev
+Summary: Python package for extracting metadata, text, html and attachements from email messages.
+Home-page: UNKNOWN
+Author: Karel Antonio Verdecia Ortiz
+Author-email: kverdecia@gmail.com
+License: LPGL3
+Description: UNKNOWN
+Keywords: email rfc822
+Platform: UNKNOWN
