@@ -83,7 +83,7 @@ class MetaData(object):
             subject=self.subject, content_type=self.content_type,
             date=self.date, timestamp=self.timestamp, 
             received_date=self.received_date,
-            received_timestamp=received_timestamp,
+            received_timestamp=self.received_timestamp,
             charset=self.charset, receivers=self.receivers)
 
     @property
