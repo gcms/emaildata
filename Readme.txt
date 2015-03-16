@@ -14,7 +14,7 @@ types of contents from emails:
 
 -  Extract metadata.
 -  Extract text (plain text and html).
--  Extract attachements.
+-  Extract attachments.
 
 Extracting metadata
 -------------------
