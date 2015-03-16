@@ -5,7 +5,7 @@ Summary: Python package for extracting metadata, text, html and attachements fro
 Home-page: https://bitbucket.org/karelverdecia/emaildata/wiki/Home
 Author: Karel Antonio Verdecia Ortiz
 Author-email: kverdecia@gmail.com
-License: LPGL3
+License: LGPL3
 Download-URL: https://bitbucket.org/karelverdecia/emaildata/
 Description: Welcome
         =======
