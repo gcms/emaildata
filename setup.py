@@ -18,7 +18,7 @@ version = '0.1'
 setup(name='emaildata',
     version=version,
     description="Python package for extracting metadata, text, html and attachements from email messages.",
-    long_description=open('Readme.md').read(),
+    long_description=open('Readme.txt').read(),
     classifiers=[
         "Topic :: Communications :: Email",
         "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
