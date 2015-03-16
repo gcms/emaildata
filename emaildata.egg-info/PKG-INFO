@@ -6,62 +6,72 @@ Home-page: https://bitbucket.org/karelverdecia/emaildata/wiki/Home
 Author: Karel Antonio Verdecia Ortiz
 Author-email: kverdecia@gmail.com
 License: LPGL3
-Description: # Welcome
+Description: Welcome
+        =======
         
-        [emaildata](https://pypi.python.org/pypi/emaildata/ "View emaildata in pypi")
-        is a python package for extracting content from email messages. It is
-        a fork of the [emailcontent](https://pypi.python.org/pypi/emailcontent/ "View emailcontent in pypi")
-        package but adds from features.
+        `emaildata <https://pypi.python.org/pypi/emaildata/>`__ is a python
+        package for extracting content from email messages. It is a fork of the
+        `emailcontent <https://pypi.python.org/pypi/emailcontent/>`__ package
+        but adds from features.
         
-        ## emaildata features
+        emaildata features
+        ------------------
         
-        [emaildata](https://pypi.python.org/pypi/emaildata/ "View emaildata in pypi")
-        extracts this types of contents from emails:
+        `emaildata <https://pypi.python.org/pypi/emaildata/>`__ extracts this
+        types of contents from emails:
         
-        * Extract metadata.
-        * Extract text (plain text and html).
-        * Extract attachements.
+        -  Extract metadata.
+        -  Extract text (plain text and html).
+        -  Extract attachements.
         
-        ## Extracting metadata
+        Extracting metadata
+        -------------------
         
-        This feature was included from the *metadata* module of the 
-        [emailcontent](https://pypi.python.org/pypi/emailcontent/ "View emailcontent in pypi"). This module was
-        copied module, few methods of is *MetaData* class were removed, and the module was made more pylint friendly.
+        This feature was included from the *metadata* module of the
+        `emailcontent <https://pypi.python.org/pypi/emailcontent/>`__. This
+        module was copied module, few methods of is *MetaData* class were
+        removed, and the module was made more pylint friendly.
         
-        To extract metadata from an email message headers you create an instance of the *MetaData* class
-        passing a message to the constructor. You can retrieve the metadata with the method *to_dict*.
-        This can also be done using the method *set_message*:
+        To extract metadata from an email message headers you create an instance
+        of the *MetaData* class passing a message to the constructor. You can
+        retrieve the metadata with the method *to\_dict*. This can also be done
+        using the method *set\_message*:
         
-        ```
-        #!python
+        ::
         
-        import email
-        from emailcontent.metadata import MetaData
+            #!python
         
-        message = email.message_from_file(open('message.eml'))
-        extractor = MetaData(message)
-        data = extractor.to_dict()
-        print data.keys()
+            import email
+            from emailcontent.metadata import MetaData
         
-        message2 = email.message_from_file(open('message2.eml'))
-        extractor.set_message(message2)
-        data2 = extractor.to_dict()
-        ```
+            message = email.message_from_file(open('message.eml'))
+            extractor = MetaData(message)
+            data = extractor.to_dict()
+            print data.keys()
         
-        ## Extracting text
+            message2 = email.message_from_file(open('message2.eml'))
+            extractor.set_message(message2)
+            data2 = extractor.to_dict()
+        
+        Extracting text
+        ---------------
         
         Comming soon...
         
-        ## Extracting attachements
+        Extracting attachements
+        -----------------------
         
         Comming soon...
         
-        ## Changelog
+        Changelog
+        ---------
         
-        ### Version 0.1 (2015-03-15)
+        Version 0.1 (2015-03-15)
+        ~~~~~~~~~~~~~~~~~~~~~~~~
         
-        * Initial version.
-        * Support for metadata extraction.
+        -  Initial version.
+        -  Support for metadata extraction.
+        
         
 Keywords: email,rfc822
 Platform: UNKNOWN
