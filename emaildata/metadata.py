@@ -75,6 +75,16 @@ class MetaData(object):
         self.received_timestamp = None
         self.charset = None
         self.receivers = None
+        
+    def to_dict(self):
+        return dict(names=self.names, message_id=self.message_id, 
+            to=self.to, sender=self.sender, reply_to=self.reply_to,
+            cc=self.cc, bcc=self.bcc, in_replay_to=self.in_reply_to,
+            subject=self.subject, content_type=self.content_type,
+            date=self.date, timestamp=self.timestamp, 
+            received_date=self.received_date,
+            received_timestamp=received_timestamp,
+            charset=self.charset, receivers=self.receivers)
 
     @property
     def addresses(self):
