@@ -78,6 +78,57 @@ class Text(object):
             return message.get_payload().encode('ascii')
 
     @staticmethod
+    def decoded(message, allowed_mimetypes=None):
+        """
+        If the mimetype of the message is in the `allowed_mimetypes` parameter returns
+        returns its content decoded. If the message is multipart find in the attachments
+        a message with mimetype in the `allowed_mimetypes` parameter and returns its
+        content decoded.
+
+        Parameters
+        ----------
+        message: email.message.Message
+            Message to decode.
+        allowed_mimetypes: iterable
+            Iterable object with the mimetypes will be used the select the message to
+            extract its text. Only `text/plain` and `text/html` allowed or a
+            `ValueError` exception will be raised.
+
+        Returns
+        -------
+        message_text: str
+            Returns the plain text of the message. This method will try return the text
+            encoded to `utf-8`. If it can't, returns it with its original encoding. If
+            it can't find the text returns `None`.
+
+        Raises
+        ------
+        TypeError
+            If the parameter is not an instance of :class:`email.message.Message`.
+        ValueError
+            If the value in the parameter allowed_mimetypes is incorrect.
+        """
+        if allowed_mimetypes is None:
+            allowed_mimetypes = ('text/plain', 'text/html')
+        wrong_mime_types = frozenset(allowed_mimetypes).difference(['text/plain', 'text/html'])
+        if wrong_mime_types:
+            raise ValueError("Wrong mime types: {0}".format(list(wrong_mime_types)))
+        if not isinstance(message, email.message.Message):
+            raise TypeError("Expected a message object.")
+        if not message.is_multipart():
+            if message.get_filename():
+                return None
+            if message.get_content_type() in allowed_mimetypes:
+                return Text.decode_text(message)
+            return None
+        for sub_message in message.get_payload():
+            if not sub_message.is_multipart():
+                result = Text.decoded(sub_message)
+                if result:
+                    return result
+        return None
+
+    @staticmethod
     def text(message):
         """Returns the plain text of the message. If the message is multipart search
         for an attachment with no filename and with mimetype `text/plain` and returns
@@ -100,19 +151,7 @@ class Text(object):
         TypeError
             If the parameter is not an instance of :class:`email.message.Message`.
         """
-        if not isinstance(message, email.message.Message):
-            raise TypeError("Expected a message object.")
-        if not message.is_multipart():
-            if message.get_filename():
-                return None
-            if message.get_content_type() == 'text/plain':
-                return Text.decode_text(message)
-            return None
-        for sub_message in message.get_payload():
-            text = Text.text(sub_message)
-            if text:
-                return text
-        return None
+        return Text.decoded(message, ['text/plain'])
 
     @staticmethod
     def html(message):
@@ -136,22 +175,13 @@ class Text(object):
         TypeError
             If the parameter is not an instance of :class:`email.message.Message`.
         """
-        if not isinstance(message, email.message.Message):
-            raise TypeError("Expected a message object.")
-        if not message.is_multipart():
-            if message.get_filename():
-                return None
-            if message.get_content_type() == 'text/html':
-                return Text.decode_text(message)
-            return None
-        for sub_message in message.get_payload():
-            text = Text.html(sub_message)
-            if text:
-                return text
-        return None
+        return Text.decoded(message, ['text/html'])
 
     @staticmethod
     def undecoded(message, allowed_mimetypes=None):
+        """This method is similar to :class:`Text.decoded` but it doesn't try to decode the
+        returned text.
+        """
         if allowed_mimetypes is None:
             allowed_mimetypes = ('text/plain', 'text/html')
         wrong_mime_types = frozenset(allowed_mimetypes).difference(['text/plain', 'text/html'])
@@ -166,19 +196,24 @@ class Text(object):
                 return message.get_payload()
             return None
         for sub_message in message.get_payload():
-            text = Text.undecoded(sub_message)
-            if text:
-                return text
+            if not sub_message.is_multipart():
+                result = Text.undecoded(sub_message)
+                if result:
+                    return result
         return None
 
     @staticmethod
     def undecoded_text(message):
+        """
+        This method is similar to :class:`Text.text` but it doesn't try to decode the
+        returned text.
+        """
         return Text.undecoded(message, ['text/plain'])
 
     @staticmethod
     def undecoded_html(message):
+        """
+        This method is similar to :class:`Text.html` but it doesn't try to decode the
+        returned text.
+        """
         return Text.undecoded(message, ['text/html'])
-
-
-
-

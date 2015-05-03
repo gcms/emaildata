@@ -34,7 +34,7 @@ using the method *set\_message*:
     #!python
 
     import email
-    from emailcontent.metadata import MetaData
+    from emaildata.metadata import MetaData
 
     message = email.message_from_file(open('message.eml'))
     extractor = MetaData(message)
@@ -48,15 +48,32 @@ using the method *set\_message*:
 Extracting text
 ---------------
 
-Comming soon...
+The class `Text` in the `text` module have static methods for extracting
+text and html from messages:
 
-Extracting attachements
+::
+
+    #!python
+
+    import email
+    from emaildata.text import Text
+
+    message = email.message_from_file(open('message.eml'))
+    text = Text.text(message)
+    html = Text.html(message)
+
+Extracting attachments
 -----------------------
 
 Comming soon...
 
 Changelog
 ---------
+
+Version 0.2 (2015-05-3)
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Implemented class for extracting plain text and html from messages.
 
 Version 0.1 (2015-03-15)
 ~~~~~~~~~~~~~~~~~~~~~~~~
