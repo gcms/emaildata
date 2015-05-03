@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 This file is part of the emailcontent package
-Copyrighted by Karel Vedecia Ortiz <kverdecia@gmail.com>
+Copyrighted by Karel Antonio Verdecia Ortiz <kverdecia@gmail.com>
 License: LGPLv3 (http://www.gnu.org/licenses/lgpl.html)
 """
 __author__ = "Karel Antonio Verdecia Ortiz"
@@ -12,10 +12,11 @@ from setuptools import setup, find_packages
 import sys, os
 
 
-version = '0.1.3'
+version = '0.2.0'
 
 
-setup(name='emaildata',
+setup(
+    name='emaildata',
     version=version,
     description="Python package for extracting metadata, text, html and attachements from email messages.",
     long_description=open('Readme.txt').read(),
