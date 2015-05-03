@@ -57,7 +57,7 @@ text and html from messages::
 Extracting attachments
 -----------------------
 
-The method :class:`Attachment.extract` returns an iterator with the decoded
+The method `extract` in the Attachment class returns an iterator with the decoded
 contents of the attachments of a message::
 
     import email
