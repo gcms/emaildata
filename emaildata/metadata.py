@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-This file is part of the emailcontent package
-Copyrighted by Karel Vedecia Ortiz <kverdecia@gmail.com>
+This file is part of the emaildata package
+Copyrighted by Karel Antonio Verdecia Ortiz <kverdecia@gmail.com>
 License: LGPLv3 (http://www.gnu.org/licenses/lgpl.html)
 """
+__docformat__ = "restructuredtext es"
 __author__ = "Karel Antonio Verdecia Ortiz"
 __contact__ = "kverdecia@gmail.com"
 
@@ -52,8 +53,7 @@ class MetaData(object):
         elif isinstance(message, email.message.Message):
             self.set_message(message)
         else:
-            raise TypeError(
-        "The message parameter must be an instance of email.message.Message.")
+            raise TypeError("The message parameter must be an instance of email.message.Message.")
 
     def clear(self):
         """Clear the `message` attribute and the extracted metadata.
@@ -77,7 +77,8 @@ class MetaData(object):
         self.receivers = None
         
     def to_dict(self):
-        return dict(names=self.names, message_id=self.message_id, 
+        return dict(
+            names=self.names, message_id=self.message_id,
             to=self.to, sender=self.sender, reply_to=self.reply_to,
             cc=self.cc, bcc=self.bcc, in_replay_to=self.in_reply_to,
             subject=self.subject, content_type=self.content_type,
@@ -93,7 +94,7 @@ class MetaData(object):
         """
         result = set()
         if self.sender:
-            result.update(set([self.sender]))
+            result.update({self.sender})
         if self.reply_to:
             result.update(set(self.reply_to))
         result.update(self.receivers())
@@ -133,7 +134,7 @@ class MetaData(object):
         self.receivers = self._receivers()
 
     def __getstate__(self):
-        "Method for serialize instances of this class."
+        """Method for serialize instances of this class."""
         result = dict(self.__dict__)
         result['message'] = None
         return result
@@ -194,6 +195,7 @@ class MetaData(object):
                 return text.decode(encoding)
             except UnicodeDecodeError:
                 return text
+
         def encode(text):
             """Encode a text to utf-8. If an exception occurs when encoding
             returns the original text"""
@@ -201,7 +203,6 @@ class MetaData(object):
                 return text.encode('utf-8')
             except UnicodeEncodeError:
                 return text
-        result = dict()
         header_value = self.message[header_name]
         if not header_value:
             return []
@@ -306,4 +307,3 @@ class MetaData(object):
             new = set(self.re_recieved.findall(headers))
             result.update(new)
         return result
-

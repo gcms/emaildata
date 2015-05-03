@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+This file is part of the emaildata package
+Copyrighted by Karel Antonio Verdecia Ortiz <kverdecia@gmail.com>
+License: LGPLv3 (http://www.gnu.org/licenses/lgpl.html)
+"""
+__docformat__ = "restructuredtext es"
+__author__ = "Karel Antonio Verdecia Ortiz"
+__contact__ = "kverdecia@gmail.com"
+
 import email
 import cStringIO
 import mimetools
@@ -122,7 +131,7 @@ class Text(object):
                 return Text.decode_text(message)
             return None
         for sub_message in message.get_payload():
-            if not sub_message.is_multipart():
+            if not sub_message.is_multipart() or sub_message.get_content_type() == 'multipart/alternative':
                 result = Text.decoded(sub_message)
                 if result:
                     return result
@@ -196,7 +205,7 @@ class Text(object):
                 return message.get_payload()
             return None
         for sub_message in message.get_payload():
-            if not sub_message.is_multipart():
+            if not sub_message.is_multipart() or sub_message.get_content_type() == 'multipart/alternative':
                 result = Text.undecoded(sub_message)
                 if result:
                     return result
