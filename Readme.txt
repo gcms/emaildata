@@ -94,7 +94,7 @@ attachments you have to pass `False` as the second parameter (`only_with_filenam
 Changelog
 ---------
 
-Version 0.2 (2015-05-3)
+Version 0.3 (2015-05-3)
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Implemented class for extracting attachments from messages.

@@ -1,6 +1,7 @@
 setup.cfg
 setup.py
 emaildata/__init__.py
+emaildata/attachment.py
 emaildata/metadata.py
 emaildata/text.py
 emaildata.egg-info/PKG-INFO
