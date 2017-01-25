@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: emaildata
-Version: 0.3.1
+Version: 0.3.4
 Summary: Python package for extracting metadata, text, html and attachements from email messages.
 Home-page: https://bitbucket.org/karelverdecia/emaildata/wiki/Home
 Author: Karel Antonio Verdecia Ortiz
@@ -66,7 +66,7 @@ Description: Welcome
         Extracting attachments
         -----------------------
         
-        The method :class:`Attachment.extract` returns an iterator with the decoded
+        The method `extract` in the Attachment class returns an iterator with the decoded
         contents of the attachments of a message::
         
             import email

@@ -1,3 +1,4 @@
+Readme.txt
 setup.cfg
 setup.py
 emaildata/__init__.py
