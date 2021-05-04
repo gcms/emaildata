@@ -9,8 +9,6 @@ __author__ = "Karel Antonio Verdecia Ortiz"
 __contact__ = "kverdecia@gmail.com"
 
 import email
-import cStringIO
-import mimetools
 
 
 class Text(object):
@@ -39,13 +37,6 @@ class Text(object):
         """
         if not isinstance(message, email.message.Message):
             raise TypeError("Expected a message object.")
-        encoding = message['Content-Transfer-Encoding']
-        if encoding and encoding.strip() == 'quoted-printable':
-            result = message.get_payload()
-            stream = cStringIO.StringIO(result)
-            output = cStringIO.StringIO()
-            mimetools.decode(stream, output, 'quoted-printable')
-            return output.getvalue()
         return message.get_payload(decode=True)
 
     @staticmethod

@@ -9,7 +9,6 @@ __contact__ = "kverdecia@gmail.com"
 
 
 from setuptools import setup, find_packages
-import sys, os
 
 
 version = '0.3.4'
@@ -36,7 +35,7 @@ setup(
     include_package_data=True,
     zip_safe=True,
     install_requires=[
-        'charset>=1.0.1',
+        'chardet>=3.0.4',
     ],
     entry_points="""
     # -*- Entry points: -*-

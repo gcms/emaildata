@@ -14,7 +14,12 @@ import email.message
 import email.header
 import email.utils
 import re
-from charset import text_to_utf8
+import chardet
+
+
+def text_to_utf8(text):
+    detection = chardet.detect(text)
+    return text.decode(detection['encoding'])
 
 
 class MetaData(object):
